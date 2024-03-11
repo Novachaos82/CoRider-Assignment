@@ -21,16 +21,6 @@ interface ChatMessage {
   sender: Sender;
   time: string;
 }
-
-//interface ApiResponse {
-//  chats: ChatMessage[];
-//  from: string;
-//  message: string;
-//  name: string;
-//  status: string;
-//  to: string;
-//}
-
 interface result {
   chats: ChatMessage[];
   from: string;
@@ -63,11 +53,6 @@ const ChatSection: FC<ChatSectionProps> = () => {
     queryKey: ["chats"],
     queryFn: fetchChats,
     getNextPageParam: (lastPage) => {
-      //console.log("lastPage ", lastPage);
-      //console.log("lastPage total", lastPage.totalPages);
-
-      //console.log("pages", pages);
-
       if (lastPage.nextPage <= lastPage.totalPages) return lastPage.nextPage;
       return undefined;
     },
@@ -76,28 +61,16 @@ const ChatSection: FC<ChatSectionProps> = () => {
 
   useEffect(() => {
     if (data) {
-      console.log("Fetched pages:", data.pages);
+      //console.log("Fetched pages:", data.pages);
       setChatsPages([]);
       data.pages.map((page: ApiResponse) => {
         page.result.chats.map((chat: ChatMessage) => {
           setChatsPages((prev: ChatMessage[]) => [...prev, chat]);
         });
-        console.log("Fetched chats:", chatPages);
+        //console.log("Fetched chats:", chatPages);
       });
     }
   }, [data]);
-
-  //const [chat, setChat] = useState<ChatMessage[]>([]);
-  //useEffect(() => {
-  //  const fetchChat = async () => {
-  //    const chat = await axios.get(
-  //      "https://qa.corider.in/assignment/chat?page=0"
-  //    );
-  //    setChat(chat.data.chats);
-  //    console.log(chat);
-  //  };
-  //  fetchChat();
-  //}, []);
 
   return (
     <div
@@ -108,6 +81,7 @@ const ChatSection: FC<ChatSectionProps> = () => {
         flexDirection: "column-reverse",
       }}
     >
+      {/* infinite scrolling */}
       <InfiniteScroll
         dataLength={chatPages.length}
         next={() => fetchNextPage()}
@@ -115,7 +89,6 @@ const ChatSection: FC<ChatSectionProps> = () => {
         style={{
           display: "flex",
           flexDirection: "column-reverse",
-          padding: "5px",
         }}
         hasMore={!!hasNextPage}
         loader={
@@ -126,7 +99,8 @@ const ChatSection: FC<ChatSectionProps> = () => {
               textAlign: "center",
               display: "flex",
               justifyContent: "center",
-              paddingBottom: "5px",
+              paddingBottom: "10px",
+              paddingTop: "10px",
             }}
           >
             <LoaderCircle color="black" />
@@ -135,15 +109,22 @@ const ChatSection: FC<ChatSectionProps> = () => {
         data-testid="infinite-scroll"
         scrollableTarget="scrollableDiv"
         endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
+          <p
+            style={{
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              paddingTop: "10px",
+            }}
+          >
+            <LoaderCircle color="black" />
           </p>
         }
       >
         <div className="flex flex-col-reverse gap-4 px-4  ">
-          {/*<div onClick={() => fetchNextPage()}>click me</div>*/}
           {chatPages.map((c) => (
             <div key={c.id} className=" text-[14px] font-normal">
+              {/* if self background is blue  */}
               {c.sender.self ? (
                 <div className="flex justify-end">
                   <div className="bg-[#1C63D5]  shadow-white-box text-white max-w-[287px] rounded-blue-box-radius p-2 ">
@@ -151,6 +132,7 @@ const ChatSection: FC<ChatSectionProps> = () => {
                   </div>
                 </div>
               ) : (
+                //else background is white and display sender image
                 <div className="flex gap-2">
                   <div>
                     <div className="relative inline-block">
@@ -176,40 +158,6 @@ const ChatSection: FC<ChatSectionProps> = () => {
               )}
             </div>
           ))}
-          {/*{chat.map((c) => (
-        <div key={c.id} className=" text-[14px] font-normal">
-          {c.sender.self ? (
-            <div className="flex justify-end">
-              <div className="bg-[#1C63D5]  shadow-white-box text-white max-w-[287px] rounded-blue-box-radius p-2 ">
-                {c.message}
-              </div>
-            </div>
-          ) : (
-            <div className="flex gap-2">
-              <div>
-                <div className="relative inline-block">
-                  <img
-                    src={c.sender.image}
-                    alt="image"
-                    className="rounded-full w-[26px] h-[26px]"
-                  />
-                  <img
-                    src={check}
-                    alt=""
-                    width={7}
-                    height={7}
-                    className="absolute bottom-0 right-0  rounded-full "
-                  />
-                </div>
-              </div>
-
-              <div className="bg-white shadow-white-box text-[#606060] max-w-[287px] rounded-white-box-radius p-2 ">
-                {c.message}
-              </div>
-            </div>
-          )}
-        </div>
-      ))}*/}
         </div>
       </InfiniteScroll>
     </div>
