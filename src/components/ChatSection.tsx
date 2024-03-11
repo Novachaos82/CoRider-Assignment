@@ -2,11 +2,9 @@ import axios from "axios";
 import { FC, useEffect, useState } from "react";
 import check from "@/assets/ChatSection/check.svg";
 import { useInfiniteQuery } from "@tanstack/react-query";
-//import InfiniteScroll from "react-infinite-scroll-component";
-import { nanoid } from "nanoid";
+
 import InfiniteScroll from "react-infinite-scroll-component";
-//import InfiniteScroll from "react-infinite-scroll-component";
-//import InfiniteScrollReverse from "react-infinite-scroll-reverse";
+
 interface ChatSectionProps {}
 
 interface Sender {
@@ -63,7 +61,7 @@ const ChatSection: FC<ChatSectionProps> = () => {
   const { data, hasNextPage, fetchNextPage } = useInfiniteQuery({
     queryKey: ["chats"],
     queryFn: fetchChats,
-    getNextPageParam: (lastPage, pages) => {
+    getNextPageParam: (lastPage) => {
       //console.log("lastPage ", lastPage);
       //console.log("lastPage total", lastPage.totalPages);
 
