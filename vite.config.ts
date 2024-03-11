@@ -48,7 +48,7 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
     background_color: "#e0cc3b",
     display: "standalone",
     scope: "/",
-    start_url: "https://pwa-hazel-omega.vercel.app",
+    start_url: "/",
     orientation: "portrait",
   },
 };
