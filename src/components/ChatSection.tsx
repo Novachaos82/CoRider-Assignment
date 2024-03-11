@@ -1,10 +1,10 @@
 import axios from "axios";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import check from "@/assets/ChatSection/check.svg";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import InfiniteScroll from "react-infinite-scroll-component";
+//import { useInfiniteQuery } from "@tanstack/react-query";
+//import InfiniteScroll from "react-infinite-scroll-component";
 import { nanoid } from "nanoid";
-import InfiniteScrollReverse from "react-infinite-scroll-reverse";
+//import InfiniteScrollReverse from "react-infinite-scroll-reverse";
 interface ChatSectionProps {}
 
 interface Sender {
