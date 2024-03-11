@@ -1,5 +1,5 @@
 import { FC } from "react";
-import logo from "@/assets/GroupTitle/Logo.svg";
+import logo from "@/assets/GroupTitle/Logo.png";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,15 +18,9 @@ const GroupTitle: FC<GroupTitleProps> = () => {
     <>
       <div className="px-4 flex items-center gap-4">
         {/* group image */}
-        <div className="">
-          <img
-            className="rounded-full "
-            src={logo}
-            alt="Back"
-            width={48}
-            height={48}
-          />
-        </div>
+
+        <img className="rounded-full " src={logo} width={48} height={48} />
+
         {/* group title */}
         <div className="flex-grow text-[16px]">
           <div className="text-[#606060]">
