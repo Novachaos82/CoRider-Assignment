@@ -46,7 +46,7 @@ const ChatSection: FC<ChatSectionProps> = () => {
     );
     await new Promise((resolve) => setTimeout(resolve, 1000));
     const result = res.data;
-    return { result, nextPage: pageParam + 1, totalPages: 20 };
+    return { result, nextPage: pageParam + 1, totalPages: 100000 };
   };
 
   const { data, hasNextPage, fetchNextPage } = useInfiniteQuery({
