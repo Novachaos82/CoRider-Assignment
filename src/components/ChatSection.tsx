@@ -4,6 +4,7 @@ import check from "@/assets/ChatSection/check.svg";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import InfiniteScroll from "react-infinite-scroll-component";
+import { LoaderCircle } from "lucide-react";
 
 interface ChatSectionProps {}
 
@@ -123,9 +124,12 @@ const ChatSection: FC<ChatSectionProps> = () => {
               color: "deepskyblue",
               fontSize: "20px",
               textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
+              paddingBottom: "5px",
             }}
           >
-            <b>Loading...</b>
+            <LoaderCircle color="black" />
           </p>
         }
         data-testid="infinite-scroll"
