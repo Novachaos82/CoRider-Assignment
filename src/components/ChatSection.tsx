@@ -41,10 +41,15 @@ const ChatSection: FC<ChatSectionProps> = () => {
   const [chatPages, setChatsPages] = useState<ChatMessage[]>([]);
 
   const fetchChats = async ({ pageParam = 0 }): Promise<ApiResponse> => {
+    let delay = 0;
+    if (pageParam > 0) {
+      delay = 1000;
+    }
     const res = await axios.get(
       `https://qa.corider.in/assignment/chat?page=${pageParam}&limit=10`
     );
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, delay));
+
     const result = res.data;
     return { result, nextPage: pageParam + 1, totalPages: 100000 };
   };
@@ -103,7 +108,7 @@ const ChatSection: FC<ChatSectionProps> = () => {
               paddingTop: "10px",
             }}
           >
-            <LoaderCircle color="black" />
+            <LoaderCircle color="black" className="animate-spin" />
           </p>
         }
         data-testid="infinite-scroll"
@@ -117,7 +122,7 @@ const ChatSection: FC<ChatSectionProps> = () => {
               paddingTop: "10px",
             }}
           >
-            <LoaderCircle color="black" />
+            <LoaderCircle color="black" className="animate-spin" />
           </p>
         }
       >
