@@ -8,12 +8,12 @@ import send from "@/assets/send.svg";
 function App() {
   return (
     <>
-      <div className="bg-[#FAF9F4] min-h-screen font-mulish  flex flex-col">
-        <div className="flex flex-col gap-4 sticky top-0 z-30 bg-white">
+      <div className="bg-[#FAF9F4]  font-mulish  flex flex-col">
+        <div className="flex flex-col gap-4 sticky w-full top-0 z-30 bg-white">
           <Header />
           <GroupTitle />
         </div>
-        <div className="  border-0 flex-grow pb-4 pt-10">
+        <div className="  border-0  pb-4 ">
           <ChatSection />
         </div>
         <div className="sticky bottom-0 p-4 bg-[#FAF9F4]">
