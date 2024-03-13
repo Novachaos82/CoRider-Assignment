@@ -43,7 +43,7 @@ const ChatSection: FC<ChatSectionProps> = () => {
   const fetchChats = async ({ pageParam = 0 }): Promise<ApiResponse> => {
     let delay = 0;
     if (pageParam > 0) {
-      delay = 1000;
+      delay = 100;
     }
     const res = await axios.get(
       `https://qa.corider.in/assignment/chat?page=${pageParam}&limit=10`
